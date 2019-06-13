@@ -17,8 +17,8 @@ app.route('/payee/:id').put(AppController.update_a_payee);
 
 app.route('/payee/:id').delete(AppController.delete_a_payee);
 
-app.route('/balance/').get(BalanceController.read_a_balance);
+app.route('/balance/').get(AppController.read_a_balance);
 
-app.route('/balance/:id').put(BalanceController.update_a_balance);
+app.route('/balance/:id').put(AppController.update_a_balance);
 
 };
