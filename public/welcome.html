@@ -1,0 +1,153 @@
+<html>
+<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular.min.js"></script>
+<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-resource.min.js"></script>
+<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-cookies.js"></script>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link> 
+</head>
+<body  ng-app="Personal-Banking">
+
+<style>
+body  {
+  background-image: url("./background.jpg");
+  background-color: #cccccc;
+}
+</style>
+
+<div class="container" ng-controller="AccountController" ng-init="init_payee() ; account_balance() ; account_transactions()">
+<a href="/" ng-click="sign_out()">Sign out</a>
+<div class="starter-template">
+
+<h1>
+Welcome <b>{{welcome}}<b>
+</h1> 
+<p class="lead">
+Here, you can manage your all account activities
+</p>  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Account Balance</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="balance in mybalance">
+      <tr>
+        <td>{{balance.myAccountBalance}}</a></td>
+      </tr>
+    </tbody>
+  </table>  
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Payee Name</th>
+        <th>Payee Bank</th>
+	<th>Payee Account ID</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="payee in payees">
+      <tr>
+        <td>{{payee.payeeName}}</a></td>
+        <td>{{payee.payeeBank}}</td>
+	<td>{{payee.payeeAccountId}}</td>
+	<td><a ng-click="editPayee( payee )" class="button">Edit</a> | <a ng-click="removePayee( payee )" class="button">Remove</a> | <a ng-click="transferToPayee( payee )" class="button">Transfer</a</td>
+      </tr>
+    </tbody>
+  </table>  
+
+
+<div class="container">
+<p class="p-5"></p>
+</div>
+
+      <h4>ADD/EDIT PAYEE</h4>
+ 
+        <form ng-submit="submitPayee()">
+            <table>
+                <tr>
+                    <td>Payee Name</td>
+                    <td><input type="text" ng-model="form.payeeName" size="60" /></td>
+                </tr>
+                <tr>
+                    <td>Payee Bank</td>
+                    <td><input type="text" ng-model="form.payeeBank" size="60" /></td>
+                </tr>
+                <tr>
+                    <td>Payee Account ID</td>
+                    <td><input type="text" ng-model="form.payeeAccountId" size="60" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+        </form>
+		
+
+<div class="container">
+<p class="p-5"></p>
+</div>
+		
+		        <h4>PAYEE TRANSFER</p></h4>
+ 
+        <form ng-submit="payPayee()">
+            <table>
+                <tr>
+                    <td>Payee Name</td>
+                    <td><input type="text" ng-model="payform.payeeName" size="60" /></td>
+                </tr>
+                <tr>
+                    <td>Payee Bank</td>
+                    <td><input type="text" ng-model="payform.payeeBank" size="60" /></td>
+                </tr>
+                <tr>
+                    <td>Payee Account ID</td>
+                    <td><input type="text" ng-model="payform.payeeAccountId" size="60" /></td>
+                </tr>
+               <tr>
+                    <td>Transfer Amount</td>
+                    <td><input type="text" ng-model="payform.payeeTransferAmount" size="60" /></td>
+                </tr>
+               <tr>
+                    <td>Transfer Date</td>
+                    <td><input type="date" ng-model="payform.payeeTransferDate" size="60" /></td>
+                </tr>				
+                <tr>
+                    <td colspan="2"><input type="submit" value="Submit" /></td>
+                </tr>
+            </table>
+        </form>
+
+<div class="container">
+<p class="p-5"></p>
+</div>
+
+<h4>ACCOUNT TRANSACTIONS</h4>	
+	<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Payee Name</th>
+        <th>Payee Bank</th>
+	<th>Payee Account ID</th>
+	<th>Transfer Amount</th>
+	<th>Transfer Date</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="transaction in mytransactions">
+      <tr>
+        <td>{{transaction.payeeName}}</a></td>
+        <td>{{transaction.payeeBank}}</td>
+	<td>{{transaction.payeeAccountId}}</td>
+	<td>{{transaction.payeeTransferAmount}}</td>
+	<td>{{transaction.payeeTransferDate}}</td>
+      </tr>
+    </tbody>
+  </table>  
+</div>
+</body> 
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="controllers/account_controller.js"></script>
+<script src="js/Chart.js"></script>
+<script src="js/angular-chart.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>
