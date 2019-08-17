@@ -27,7 +27,7 @@ $scope.newuser= {
 $scope.register = function() {
 $http({
           method  : 'POST',
-          url     : 'http://34.237.1.157:3000/users',
+          url     : 'http://localhost:3000/users',
           data    : $scope.newuser 
          })
  .success(function(response) {
